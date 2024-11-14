@@ -1,12 +1,12 @@
-import { selectCharacters } from "../../services/slices/characters";
+import { selectFilms } from "../../services/slices/films";
 import { useSelector } from "../../services/store";
 import { Card } from "../card/card";
 import styles from './cardList.module.scss';
 
 function CardList() {
-  const characterList = useSelector(selectCharacters);
+  const characterList = useSelector(selectFilms);
   const cardList = characterList.map((item) => (
-    <Card item={item} key={crypto.randomUUID()}/>
+    <Card item={item} key={item.id}/>
   ))
 
   return (

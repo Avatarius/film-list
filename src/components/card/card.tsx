@@ -1,18 +1,31 @@
 import styles from "./card.module.scss";
 import defaultImg from "../../images/default.jpg";
-import { ICharacter } from "../../utils/types";
+import { ICharacter, IFilm } from "../../utils/types";
 import { SyntheticEvent } from "react";
 import clsx from "clsx";
 
 interface ICardProps {
-  item: ICharacter;
+  item: IFilm;
 }
 
 function Card({ item }: ICardProps) {
-  const { name, imageUrl, films, shortFilms, tvShows, videoGames } = item;
-  const seenInList = [...films, ...shortFilms, ...tvShows, ...videoGames];
-  const seenInString = seenInList.join(", ");
+  const { name, nameOrig, year, country, poster, description } = item;
+
   return (
+    <article className={styles.container}>
+      {/* <div className={styles.poster__container}>
+        <img src={poster} alt="poster" className={styles.poster__img}/>
+      </div> */}
+      <div className={styles.poster} style={{backgroundImage: `url(${poster})`}}></div>
+      <div className={styles.info}>
+        <h2 className={styles.info__title}>{name}</h2>
+        <p className={styles.info__year}>{`${nameOrig}, ${year}`}</p>
+        <p className={styles.info__country}>{country}</p>
+        <p className={styles.info__description}>{description}</p>
+      </div>
+    </article>
+  )
+  /* return (
     <article className={styles.container}>
       <button className={clsx(styles.button, styles.button_remove)}>
         <svg viewBox="-0.5 0 19 19" width={35} height={35}>
@@ -25,7 +38,7 @@ function Card({ item }: ICardProps) {
       </button>
       <div className={styles["img-container"]}>
         <img
-          src={imageUrl}
+          src={defaultImg}
           alt={name}
           className={styles.img}
           onError={(e: SyntheticEvent<HTMLImageElement, Event>) => {
@@ -45,15 +58,9 @@ function Card({ item }: ICardProps) {
             </svg>
           </button>
         </div>
-        {seenInList.length !== 0 && (
-          <div className={styles.seen}>
-            <h3 className={styles.seen__title}>Seen in: </h3>
-            <p className={styles.seen__text}>{seenInString}</p>
-          </div>
-        )}
       </div>
     </article>
-  );
+  ); */
 }
 
 export { Card };
