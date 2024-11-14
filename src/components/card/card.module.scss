@@ -7,6 +7,7 @@
   grid-template-rows: 350px;
   border-radius: 10px;
   box-shadow: 3px -3px 10px rgba(0 0 0 / 0.4);
+  overflow: hidden;
   color: #fff;
   background-color: #000;
   cursor: pointer;
@@ -42,10 +43,15 @@
 }
 
 .info {
-  padding: 10px;
   margin-block-start: 20px;
-  &__title {
+  padding: 10px;
+
+  &__title-container {
     margin-block-end: 25px;
+    @include mixins.flex(row, space-between, center);
+  }
+
+  &__title {
     font-size: 25px;
   }
   &__year {
@@ -74,59 +80,29 @@
   }
 }
 
-/* .info {
-  padding: 10px;
-
-  &__title-container {
-    @include mixins.flex(row, space-between, center);
-  }
-
-  &__title {
-    margin-block-end: 10px;
-    font-size: 30px;
-    max-inline-size: 300px;
-  }
-}
-
-.seen {
-  &__title {
-    margin-block-end: 5px;
-    font-size: 20px;
-  }
-  &__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-block-size: 40px;
-    white-space: nowrap;
-  }
-}
-
 .button {
   @include mixins.button();
+  @include mixins.flex(row, center, center);
+}
+
+.button_like {
+  transition: scale 0.2s ease-in-out;
+}
+
+.button_like:hover {
+  scale: 1.1;
 }
 
 .button_remove {
   position: absolute;
-  z-index: 3;
-  background-color: rgba(0 0 0 / 0.5);
-  border-end-start-radius: 30px;
-  padding: 10px;
-  inset-inline-end: 0px;
-  inset-block-start: 0;
-  translate: 100%;
+  border-start-start-radius: inherit;
+  border-end-end-radius: inherit;
+  padding: 5px;
+  background-color: rgba(255 0 0 / 0.5);
   transition: translate 0.2s ease-in-out;
+  translate: -100%;
 }
 
 .container:has(:hover) .button_remove {
   translate: 0;
-  background-color: rgba(255 0 0 / 0.6);
 }
-
-.button_like {
-  @include mixins.flex(row, center, center);
-  transition: scale 0.2s ease-in-out;
-
-  &:hover {
-    scale: 1.2;
-  }
-} */
