@@ -1,0 +1,49 @@
+@use '../../styles/mixins.scss';
+
+.container {
+  background-color: var(--header-background-color, #000);
+  color: var(--header-color, #fff);
+  font-size: 40px;
+  padding: 25px 15px;
+  @include mixins.flex(row, space-between, center);
+}
+
+
+.nav {
+  font-size: 25px;
+  &__list {
+    @include mixins.flex();
+    gap: 20px;
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    transition: translate 0.2s ease-in-out;
+    padding: 10px;
+    border-radius: 5px;
+
+    &:hover {
+      translate: 0 -5px;
+    }
+
+    &_active {
+      background-color: #fff;
+      color: #000;
+    }
+
+    /* &_active::before {
+      content: '';
+      position: absolute;
+      inset-inline-start: calc(50% - 4px);
+      inset-block-end: -15px;
+      inline-size: 8px;
+      block-size: 8px;
+      border-radius: 100%;
+      background-color: #fff;
+    } */
+  }
+}
+
+

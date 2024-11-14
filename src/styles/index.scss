@@ -1,0 +1,8 @@
+@import '../fonts/font.scss';
+@import '../styles/variables.scss';
+@import '../styles/reset.scss';
+
+
+body {
+  font-family: var(--main-font-family, sans-serif);
+}

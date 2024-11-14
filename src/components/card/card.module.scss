@@ -1,0 +1,90 @@
+@use "../../styles/mixins.scss";
+
+.container {
+  position: relative;
+  border: 1px solid #000;
+  border-radius: 10px;
+  box-shadow: 3px -3px 10px rgba(0 0 0 / 0.4);
+  color: #fff;
+  background-color: #000;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.img-container {
+  max-width: 350px;
+  border-start-start-radius: inherit;
+  border-start-end-radius: inherit;
+  overflow: hidden;
+}
+
+.img {
+  display: block;
+  border-start-start-radius: inherit;
+  border-start-end-radius: inherit;
+  object-fit: cover;
+  transition: scale 0.2s ease-in-out;
+  inline-size: 100%;
+  aspect-ratio: 1;
+  &:hover {
+    scale: 1.07;
+  }
+}
+
+.info {
+  padding: 10px;
+
+  &__title-container {
+    @include mixins.flex(row, space-between, center);
+  }
+
+  &__title {
+    margin-block-end: 10px;
+    font-size: 30px;
+    max-inline-size: 300px;
+  }
+}
+
+.seen {
+  &__title {
+    margin-block-end: 5px;
+    font-size: 20px;
+  }
+  &__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-block-size: 40px;
+    white-space: nowrap;
+  }
+}
+
+.button {
+  @include mixins.button();
+}
+
+.button_remove {
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(0 0 0 / 0.5);
+  border-end-start-radius: 30px;
+  padding: 10px;
+  inset-inline-end: 0px;
+  inset-block-start: 0;
+  translate: 100%;
+  transition: translate 0.2s ease-in-out;
+}
+
+.container:has(:hover) .button_remove {
+  translate: 0;
+  background-color: rgba(255 0 0 / 0.6);
+}
+
+.button_like {
+  @include mixins.flex(row, center, center);
+  transition: scale 0.2s ease-in-out;
+
+  &:hover {
+    scale: 1.2;
+  }
+}
+

@@ -1,0 +1,44 @@
+@use "../../styles/mixins.scss";
+
+.container {
+  flex-grow: 1;
+  position: relative;
+  @include mixins.flex(row, center, center);
+}
+
+.text {
+  font-size: 100px;
+  overflow: hidden;
+  @include mixins.flex();
+}
+
+.letter {
+  display: block;
+}
+
+@for $i from 1 through 7 {
+  .letter:nth-child(#{$i}) {
+    animation: 1s ease-in-out #{($i) * 0.1}s both movement,
+      0.3s ease-in-out #{($i * 0.1) + 0.6}s both opacity;
+  }
+}
+
+@keyframes movement {
+  from {
+    translate: 0 100%;
+  }
+
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
