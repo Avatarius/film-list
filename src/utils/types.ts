@@ -7,4 +7,13 @@ interface ICharacter {
   videoGames: string[];
 }
 
-export type { ICharacter };
+interface IFilm {
+  id: string;
+  name: string;
+  nameOrig: string;
+  year: number;
+  country: string;
+  poster: string;
+}
+
+export type { ICharacter , IFilm };

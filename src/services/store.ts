@@ -5,9 +5,11 @@ import {
   useSelector as selectorHook,
 } from "react-redux";
 import { charactersSlice } from "./slices/characters";
+import { filmsSlice } from "./slices/films";
 
 const rootReducer = combineReducers({
   [charactersSlice.name]: charactersSlice.reducer,
+  [filmsSlice.name]: filmsSlice.reducer
 });
 
 const store = configureStore({
