@@ -47,13 +47,19 @@ const filmsSlice = createSlice({
     selectAllFilms: (state) => state.films,
     selectFavoriteFilms: (state) =>
       state.films.filter((film) => film.isFavorite),
+    selectFilmById: (state, id) => state.films.find((film) => film.id === id),
     selectIsLoading: (state) => state.isLoading,
     selectFilter: (state) => state.filter,
   },
 });
 
-const { selectAllFilms, selectFavoriteFilms, selectIsLoading, selectFilter } =
-  filmsSlice.selectors;
+const {
+  selectAllFilms,
+  selectFavoriteFilms,
+  selectFilmById,
+  selectIsLoading,
+  selectFilter,
+} = filmsSlice.selectors;
 const { removeFilm, likeFilm, setFilter } = filmsSlice.actions;
 
 export {
@@ -61,6 +67,7 @@ export {
   setFilter,
   selectAllFilms,
   selectFavoriteFilms,
+  selectFilmById,
   selectIsLoading,
   selectFilter,
 };

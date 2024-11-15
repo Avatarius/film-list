@@ -8,11 +8,11 @@
 }
 
 .modal {
+  flex-basis: 700px;
   position: relative;
-  border-radius: 10px;
+  border-radius: var(--modal-border-radius, 10px);
   background-color: #000;
-  inline-size: 500px;
-  block-size: 500px;
+  color: #fff;
 }
 
 .button {

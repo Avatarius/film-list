@@ -1,0 +1,67 @@
+@use '../../styles/mixins.scss';
+
+.container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  font-size: 18px;
+}
+
+
+.poster {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  border-start-start-radius: var(--modal-border-radius, 10px);
+  border-end-start-radius: var(--modal-border-radius, 10px);
+  &__img {
+    display: block;
+    object-fit: cover;
+    inline-size: 100%;
+    block-size: 100%;
+    border-start-start-radius: inherit;
+    border-end-start-radius: inherit;
+    transition: scale 0.2s ease-in-out;
+  }
+  &:has(:hover) &__img {
+    scale: 1.07;
+  }
+}
+
+
+.info {
+  padding: 10px;
+  margin-block-start: 20px;
+  &__title-container {
+    margin-block-end: 25px;
+    @include mixins.flex(row, space-between, center);
+  }
+  &__title {
+    font-size: 28px;
+  }
+  &__year {
+    margin-block-end: 10px;
+  }
+  &__country {
+    margin-block-end: 15px;
+  }
+}
+
+
+.button {
+  @include mixins.button();
+  @include mixins.flex(row, center, center);
+  &-like {
+    transition: scale 0.2s ease-in-out;
+    &:hover {
+      scale: 1.15;
+    }
+    &__svg {
+      color: transparent;
+      transition: color 0.2s ease-in-out;
+    }
+    &_active &__svg {
+      color: #fff;
+    }
+  }
+}

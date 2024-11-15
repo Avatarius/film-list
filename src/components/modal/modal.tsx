@@ -17,9 +17,16 @@ function Modal(props: IModalProps) {
       e.key === "Escape" && onClose();
     }
 
+    function handleClickOutside(e: MouseEvent) {
+      const target = e.target as HTMLElement;
+      target.classList.contains(styles.container) && onClose();
+    }
+
     document.addEventListener("keydown", handleEscape);
+    document.addEventListener('click', handleClickOutside)
     return () => {
       document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, [onClose]);
 

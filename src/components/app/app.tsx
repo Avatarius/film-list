@@ -8,6 +8,7 @@ import { Products } from "../../pages/products/products";
 import { fetchFilms } from "../../services/thunk/films";
 import { likeFilm } from "../../utils/api";
 import { Modal } from "../modal/modal";
+import { ProductInfo } from "../productInfo/productInfo";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function App() {
       </Routes>
       {backgroundLocation && (
         <Routes>
-          <Route path="/products/:id" element={<Modal onClose={() => navigate('/products')}></Modal>} />
+          <Route path="/products/:id" element={<Modal onClose={() => navigate('/products')}><ProductInfo/></Modal>} />
         </Routes>
       )}
     </div>
