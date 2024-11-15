@@ -1,20 +1,7 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { IFilm } from "./types";
 
-function getCharacters() {
-  return fetch("https://api.disneyapi.dev/character")
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(res.status);
-      }
-    })
-    .then((data) => {
-      return data;
-    });
-}
 
 async function getFilms() {
   const list: IFilm[] = [];
@@ -26,10 +13,20 @@ async function getFilms() {
   return list;
 }
 
+async function likeFilm(id: string, isFavorite: boolean) {
+  const docRef = doc(db, 'films', id);
+  await updateDoc(docRef, {
+    isFavorite
+  });
+  const docSnap = await getDoc(docRef);
+  return {...docSnap.data(), id: docSnap.id} as IFilm;
+
+}
+
 /* async function addDocument(order: IOrder) {
   const docRef = await addDoc(collection(db, 'orders'), order);
   return docRef;
 } */
 
 
-export { getCharacters, getFilms };
+export {getFilms, likeFilm };

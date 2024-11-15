@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFilms } from "../thunk/films";
+import { fetchFilms, updateFilm } from "../thunk/films";
 import { IFilm } from "../../utils/types";
 
 interface IFilmsState {
@@ -15,7 +15,14 @@ const initialState: IFilmsState = {
 const filmsSlice = createSlice({
   name: "films",
   initialState,
-  reducers: {},
+  reducers: {
+    removeFilm: (state) => {
+
+    },
+    likeFilm: (state) => {
+
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchFilms.pending, (state) => {
@@ -27,7 +34,13 @@ const filmsSlice = createSlice({
       })
       .addCase(fetchFilms.rejected, (state) => {
         state.isLoading = false;
-      });
+      })
+      .addCase(updateFilm.fulfilled, (state, action) => {
+        const {id, isFavorite} = action.payload;
+        const item = state.films.find(item => item.id === id);
+        if (!item) return;
+        item.isFavorite = isFavorite;
+      })
   },
   selectors: {
     selectFilms: (state) => state.films,
@@ -36,5 +49,6 @@ const filmsSlice = createSlice({
 });
 
 const { selectFilms, selectIsLoading } = filmsSlice.selectors;
+const {removeFilm, likeFilm} = filmsSlice.actions;
 
 export { filmsSlice, selectFilms, selectIsLoading };

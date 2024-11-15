@@ -85,15 +85,24 @@
   @include mixins.flex(row, center, center);
 }
 
-.button_like {
+.button-like {
   transition: scale 0.2s ease-in-out;
 }
 
-.button_like:hover {
+.button-like__svg {
+  color: transparent;
+  transition: color 0.2s ease-in-out;
+}
+
+.button-like_active .button-like__svg {
+  color: #fff;
+}
+
+.button-like:hover {
   scale: 1.1;
 }
 
-.button_remove {
+.button-remove {
   position: absolute;
   border-start-start-radius: inherit;
   border-end-end-radius: inherit;
@@ -103,6 +112,6 @@
   translate: -100%;
 }
 
-.container:has(:hover) .button_remove {
+.container:has(:hover) .button-remove {
   translate: 0;
 }

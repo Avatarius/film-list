@@ -1,12 +1,3 @@
-interface ICharacter {
-  name: string;
-  imageUrl: string;
-  films: string[];
-  shortFilms: string[];
-  tvShows: string[];
-  videoGames: string[];
-}
-
 interface IFilm {
   id: string;
   name: string;
@@ -15,6 +6,9 @@ interface IFilm {
   year: number;
   country: string;
   poster: string;
+  isFavorite: boolean;
 }
 
-export type { ICharacter , IFilm };
+type UpdateFilm = Pick<IFilm, 'id' | 'isFavorite'>;
+
+export type {IFilm, UpdateFilm };
