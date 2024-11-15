@@ -11,4 +11,11 @@ interface IFilm {
 
 type UpdateFilm = Pick<IFilm, 'id' | 'isFavorite'>;
 
+enum Filter {
+  ALL,
+  FAVORITE
+}
+
 export type {IFilm, UpdateFilm };
+
+export {Filter};

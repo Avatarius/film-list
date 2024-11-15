@@ -6,6 +6,7 @@
 }
 
 @mixin button() {
+  display: block;
   font-family: inherit;
   font-size: inherit;
   background-color: transparent;

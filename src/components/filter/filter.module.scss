@@ -1,0 +1,30 @@
+@use '../../styles/mixins.scss';
+
+.container {
+  @include mixins.flex(row, center, center);
+  margin-block: 45px 5px;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: 500px 500px;
+  gap: 40px;
+  position: relative;
+}
+
+.button {
+  @include mixins.button();
+  justify-self: center;
+  font-size: 25px;
+  padding: 10px;
+  inline-size: 500px;
+}
+
+.highlight {
+  display: block;
+  position: absolute;
+  inset-block-end: 1px;
+  inline-size: 500px;
+  block-size: 2px;
+  background-color: #979797;
+}
