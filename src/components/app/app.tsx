@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "../../services/store";
 import { Header } from "../header/header";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Welcome } from "../welcome/welcome";
 import styles from "./app.module.scss";
 import { Products } from "../../pages/products/products";
@@ -13,6 +13,7 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const backgroundLocation = location.state?.backgroundLocation;
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchFilms());
@@ -28,7 +29,7 @@ function App() {
       </Routes>
       {backgroundLocation && (
         <Routes>
-          <Route path="/products/:id" element={<Modal></Modal>} />
+          <Route path="/products/:id" element={<Modal onClose={() => navigate('/products')}></Modal>} />
         </Routes>
       )}
     </div>
