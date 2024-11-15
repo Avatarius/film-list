@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import {
   selectAllFilms,
   selectFavoriteFilms,
@@ -15,7 +16,7 @@ function CardList() {
       ? useSelector(selectFavoriteFilms)
       : useSelector(selectAllFilms);
   const cardList = characterList.map((item) => (
-    <Card item={item} key={item.id} />
+    <Card item={item} key={item.id}/>
   ));
 
   return <ul className={styles.container}>{cardList}</ul>;

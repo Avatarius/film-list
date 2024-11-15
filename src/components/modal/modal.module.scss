@@ -1,0 +1,21 @@
+@use '../../styles/mixins.scss';
+
+.container {
+  position: fixed;
+  inset: 0;
+  @include mixins.flex(row, center, center);
+  pointer-events: none;
+
+}
+
+
+.modal {
+  position: relative;
+  inline-size: 500px;
+  block-size: 500px;
+  background-color: #000;
+}
+
+.button {
+
+}

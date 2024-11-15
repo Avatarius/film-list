@@ -3,7 +3,7 @@ import { IFilm } from "../../utils/types";
 import clsx from "clsx";
 import { updateFilm } from "../../services/thunk/films";
 import { useDispatch } from "../../services/store";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface ICardProps {
   item: IFilm;
@@ -13,6 +13,8 @@ function Card({ item }: ICardProps) {
   const { id, name, nameOrig, year, country, poster, description, isFavorite } =
     item;
   const dispatch = useDispatch();
+
+  const location = useLocation();
 
   function removeCard(e: React.MouseEvent) {
     e.preventDefault();
@@ -24,8 +26,8 @@ function Card({ item }: ICardProps) {
   }
 
   return (
-    <Link to={`/products/${id}`} className={styles.link}>
-      <article className={styles.container}>
+      <li>
+        <Link to={`/products/${id}`} className={styles.container} state={{backgroundLocation: location}}>
         <button
           className={clsx(styles.button, styles["button-remove"])}
           onClick={removeCard}
@@ -71,8 +73,9 @@ function Card({ item }: ICardProps) {
           <p className={styles.info__country}>{country}</p>
           <p className={styles.info__description}>{description}</p>
         </div>
-      </article>
-    </Link>
+        </Link>
+
+      </li>
   );
 }
 
