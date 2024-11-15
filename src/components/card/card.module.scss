@@ -1,5 +1,9 @@
 @use "../../styles/mixins.scss";
 
+.link {
+  text-decoration: none;
+}
+
 .container {
   position: relative;
   display: grid;
