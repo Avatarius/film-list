@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchFilms, updateFilm } from "../thunk/films";
-import { IFilm } from "../../utils/types";
+import { FilterType, IFilm } from "../../utils/types";
 
 interface IFilmsState {
   films: IFilm[];
+  filter: FilterType;
   isLoading: boolean;
 }
 
 const initialState: IFilmsState = {
   films: [],
+  filter: FilterType.ALL,
   isLoading: false,
 };
 
@@ -16,12 +18,11 @@ const filmsSlice = createSlice({
   name: "films",
   initialState,
   reducers: {
-    removeFilm: (state) => {
-
+    removeFilm: (state) => {},
+    likeFilm: (state) => {},
+    setFilter: (state, action) => {
+      state.filter = action.payload;
     },
-    likeFilm: (state) => {
-
-    }
   },
   extraReducers: (builder) => {
     builder
@@ -36,19 +37,30 @@ const filmsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(updateFilm.fulfilled, (state, action) => {
-        const {id, isFavorite} = action.payload;
-        const item = state.films.find(item => item.id === id);
+        const { id, isFavorite } = action.payload;
+        const item = state.films.find((item) => item.id === id);
         if (!item) return;
         item.isFavorite = isFavorite;
-      })
+      });
   },
   selectors: {
-    selectFilms: (state) => state.films,
+    selectAllFilms: (state) => state.films,
+    selectFavoriteFilms: (state) =>
+      state.films.filter((film) => film.isFavorite),
     selectIsLoading: (state) => state.isLoading,
+    selectFilter: (state) => state.filter,
   },
 });
 
-const { selectFilms, selectIsLoading } = filmsSlice.selectors;
-const {removeFilm, likeFilm} = filmsSlice.actions;
+const { selectAllFilms, selectFavoriteFilms, selectIsLoading, selectFilter } =
+  filmsSlice.selectors;
+const { removeFilm, likeFilm, setFilter } = filmsSlice.actions;
 
-export { filmsSlice, selectFilms, selectIsLoading };
+export {
+  filmsSlice,
+  setFilter,
+  selectAllFilms,
+  selectFavoriteFilms,
+  selectIsLoading,
+  selectFilter,
+};

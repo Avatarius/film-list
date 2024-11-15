@@ -18,13 +18,7 @@
   font-size: 25px;
   padding: 10px;
   inline-size: 500px;
-}
-
-.highlight {
-  display: block;
-  position: absolute;
-  inset-block-end: 1px;
-  inline-size: 500px;
-  block-size: 2px;
-  background-color: #979797;
+  &_active {
+    border-block-end: 1px solid rgba(0 0 0 / 0.5);
+  }
 }
