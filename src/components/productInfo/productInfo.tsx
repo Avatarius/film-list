@@ -1,7 +1,7 @@
 import styles from "./productInfo.module.scss";
 import { useDispatch } from "../../services/store";
 import clsx from "clsx";
-import { updateFilm } from "../../services/thunk/films";
+import { fetchFilms, removeFilm, updateFilm } from "../../services/thunk/films";
 import { IFilm } from "../../utils/types";
 
 interface IProductInfo {
@@ -24,7 +24,9 @@ function ProductInfo({ film, isCard }: IProductInfo) {
 
   function removeCard(e: React.MouseEvent) {
     e.preventDefault();
-    console.log("remove");
+    dispatch(removeFilm(id)).then(() => {
+      dispatch(fetchFilms());
+    });
   }
 
   return (

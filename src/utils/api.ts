@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, updateDoc, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, updateDoc, serverTimestamp, deleteDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { IFilm, INewFilm } from "./types";
 
@@ -29,5 +29,10 @@ async function addFilmApi(film: INewFilm) {
   return docRef;
 }
 
+async function removeFilmApi(id: string) {
+  const result = await deleteDoc(doc(db, 'films', id));
+  return result;
+}
 
-export {getFilms, likeFilmApi, addFilmApi };
+
+export {getFilms, likeFilmApi, addFilmApi, removeFilmApi };
