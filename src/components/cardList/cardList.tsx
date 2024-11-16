@@ -21,7 +21,7 @@ function CardList() {
     const {id} = item;
     return (
       <li key={id} className={styles.card}>
-        <Link to={`/products/${id}`} className={styles.link} state={{backgroundLocation: location, film: item}}>
+        <Link to={`/products/${id}`} className={styles.link} state={{backgroundLocation: location, id}}>
         <ProductInfo film={item} isCard={true}/>
         </Link>
       </li>

@@ -16,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const backgroundLocation = location.state?.backgroundLocation;
-  const currentFilm = location.state?.film ?? null;
+  const currentFilm = useSelector((state) => selectFilmById(state, location.state?.id));
   const navigate = useNavigate();
 
   useEffect(() => {
