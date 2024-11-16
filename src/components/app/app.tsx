@@ -10,6 +10,7 @@ import { Modal } from "../modal/modal";
 import { ProductInfo } from "../productInfo/productInfo";
 import { useSelector } from "../../services/store";
 import { selectFilmById } from "../../services/slices/films";
+import { ProductAdd } from "../productAdd/productAdd";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,11 +29,13 @@ function App() {
           <Route index element={<Welcome />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<div></div>} />
+          <Route path="/create-product" element={<div>gdfgfd</div>} />
         </Route>
       </Routes>
       {backgroundLocation && (
         <Routes>
           <Route path="/products/:id" element={<Modal onClose={() => navigate('/products')}><ProductInfo film={currentFilm} isCard={false}/></Modal>} />
+          <Route path="/create-product" element={<Modal onClose={() => navigate('/products')}><ProductAdd/></Modal>}/>
         </Routes>
       )}
     </div>

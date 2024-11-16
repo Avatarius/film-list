@@ -20,14 +20,12 @@ function ProductInfo({ film, isCard }: IProductInfo) {
   function likeCard(e: React.MouseEvent) {
     e.preventDefault();
     dispatch(updateFilm({ id: id, isFavorite: !isFavorite }));
-
   }
 
   function removeCard(e: React.MouseEvent) {
     e.preventDefault();
-    console.log('remove');
+    console.log("remove");
   }
-
 
   return (
     <article

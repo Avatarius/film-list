@@ -1,0 +1,37 @@
+@use "../../styles/mixins.scss";
+
+.container {
+  padding: 11px;
+}
+
+.form {
+  @include mixins.flex(column, center, stretch);
+  font-size: 18px;
+  gap: 20px;
+}
+
+.title {
+  font-size: 32px;
+  margin-block-end: 45px;
+  text-align: center;
+}
+
+.label {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  &__input {
+    display: block;
+    appearance: none;
+    border-radius: 6px;
+    font-size: 20px;
+  }
+}
+
+.button {
+  @include mixins.button();
+  margin-block-start: 10px;
+  border: 1px solid #fff;
+  padding: 14px;
+  border-radius: 14px;
+}

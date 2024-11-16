@@ -1,0 +1,19 @@
+@use '../../styles/mixins.scss';
+
+.container {
+  @include mixins.button();
+  margin-block-start: 45px;
+  inline-size: 100%;
+  padding: 20px;
+  font-size: 22px;
+  border-radius: 20px;
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background-color: #e5e5e5;
+  }
+}
+
+.link {
+  color: unset;
+  text-decoration: none;
+}

@@ -2,13 +2,13 @@
 
 .container {
   @include mixins.flex(row, center, center);
-  margin-block: 45px 5px;
+  margin-block-end: 45px;
 }
 
 .button-container {
   display: grid;
-  grid-template-columns: 500px 500px;
-  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--card-gap, 40px);
   position: relative;
 }
 
