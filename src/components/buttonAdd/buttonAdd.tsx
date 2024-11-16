@@ -4,13 +4,13 @@ import styles from "./buttonAdd.module.scss";
 function ButtonAdd() {
   const location = useLocation();
   return (
-    <button
-      className={styles.container}
+    <Link
+      to="/create-product"
+      state={{ backgroundLocation: location }}
+      className={styles.link}
     >
-      <Link to={'/create-product'} state={{backgroundLocation: location}} className={styles.link}>
-      + Добавить фильм
-      </Link>
-    </button>
+      <button className={styles.container}>+ Добавить фильм</button>
+    </Link>
   );
 }
 

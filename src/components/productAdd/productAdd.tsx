@@ -1,5 +1,6 @@
 import { SyntheticEvent } from "react";
 import styles from "./productAdd.module.scss";
+import clsx from "clsx";
 
 function ProductAdd() {
 
@@ -26,7 +27,7 @@ function ProductAdd() {
         </label>
         <label className={styles.label}>
           Год выпуска
-          <input type="number" required className={styles.label__input} />
+          <input type="number" required className={clsx(styles.label__input, styles.label__input_number)} />
         </label>
         <label className={styles.label}>
           Страна

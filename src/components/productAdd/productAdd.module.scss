@@ -1,37 +1,61 @@
 @use "../../styles/mixins.scss";
 
 .container {
-  padding: 11px;
+  border-radius: inherit;
+  padding: 22px;
+  background-color: var(--form-background-color);
 }
 
 .form {
-  @include mixins.flex(column, center, stretch);
-  font-size: 18px;
   gap: 20px;
+  font-size: 18px;
+  @include mixins.flex(column, center, stretch);
 }
 
 .title {
+  margin-block-end: 25px;
   font-size: 32px;
-  margin-block-end: 45px;
   text-align: center;
 }
 
 .label {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  @include mixins.flex(column, flex-start, flex-start);
 
   &__input {
     display: block;
-    appearance: none;
+    box-sizing: border-box;
+    margin: 0;
+    margin-block-start: 7px;
+    border: none;
     border-radius: 6px;
-    font-size: 20px;
+    padding: 8px;
+    color: var(--input-text-color, #c8c8c8);
+    font-size: 22px;
+    background-color: var(--input-background-color, #303245);
+    inline-size: 100%;
+    appearance: none;
+
+    &_number::-webkit-outer-spin-button,
+    &_number::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &_number {
+      -moz-appearance: textfield;
+    }
+
   }
 }
 
 .button {
   @include mixins.button();
   margin-block-start: 10px;
-  border: 1px solid #fff;
-  padding: 14px;
+  border: 1px solid #858da3;
   border-radius: 14px;
+  padding: 14px;
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: #323e61;
+  }
 }

@@ -11,7 +11,7 @@
   flex-basis: 700px;
   position: relative;
   border-radius: var(--modal-border-radius, 10px);
-  background-color: #000;
+  background-color: var(--modal-background-color, #000);
   color: #fff;
 }
 
