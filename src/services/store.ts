@@ -7,11 +7,15 @@ import {
 import { filmsSlice } from "./slices/films";
 
 const rootReducer = combineReducers({
-  [filmsSlice.name]: filmsSlice.reducer
+  [filmsSlice.name]: filmsSlice.reducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   devTools: process.env.NODE_ENV !== "production",
 });
 

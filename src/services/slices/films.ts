@@ -31,7 +31,8 @@ const filmsSlice = createSlice({
       })
       .addCase(fetchFilms.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.films = action.payload;
+
+        state.films = [...action.payload.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds)];
       })
       .addCase(fetchFilms.rejected, (state) => {
         state.isLoading = false;

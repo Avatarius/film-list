@@ -2,7 +2,7 @@ import { Dispatch, FormEvent, SetStateAction } from "react";
 import styles from "./productAdd.module.scss";
 import clsx from "clsx";
 import { IFormData, INewFilm } from "../../utils/types";
-import { addNewFilm } from "../../services/thunk/films";
+import { addNewFilm, fetchFilms } from "../../services/thunk/films";
 import { useDispatch } from "../../services/store";
 import { useNavigate } from "react-router-dom";
 
@@ -19,6 +19,7 @@ function ProductAdd({formData, setFormData} : IProductAddProps) {
     const newFilm: INewFilm = {...formData, isFavorite: false, year: Number(formData.year)};
     dispatch(addNewFilm(newFilm)).then(() => {
       navigate('/products');
+      dispatch(fetchFilms());
     });
   }
 

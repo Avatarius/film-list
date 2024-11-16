@@ -8,7 +8,6 @@ async function getFilms() {
   const querySnapshot = await getDocs(collection(db, 'films'));
   querySnapshot.forEach((doc) => {
     const product = {...doc.data() as IFilm, id: doc.id};
-    console.log(serverTimestamp());
 
     list.push(product);
   });
@@ -18,14 +17,15 @@ async function getFilms() {
 async function likeFilmApi(id: string, isFavorite: boolean) {
   const docRef = doc(db, 'films', id);
   await updateDoc(docRef, {
-    isFavorite
+    isFavorite,
+    timestamp: serverTimestamp()
   });
   const docSnap = await getDoc(docRef);
   return {...docSnap.data(), id: docSnap.id} as IFilm;
 }
 
 async function addFilmApi(film: INewFilm) {
-  const docRef = await addDoc(collection(db, 'films'), film);
+  const docRef = await addDoc(collection(db, 'films'), {...film, timestamp: serverTimestamp()});
   return docRef;
 }
 

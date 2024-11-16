@@ -7,13 +7,16 @@ interface IFilm {
   country: string;
   poster: string;
   isFavorite: boolean;
+  timestamp: {
+    seconds: number;
+  }
 }
 
-interface IFormData extends Omit<IFilm, 'year' | 'id' | 'isFavorite'> {
+interface IFormData extends Omit<IFilm, 'year' | 'id' | 'isFavorite' | 'timestamp'> {
   year: string;
 }
 
-type INewFilm = Omit<IFilm, 'id'> ;
+type INewFilm = Omit<IFilm, 'id' | 'timestamp'> ;
 
 type UpdateFilm = Pick<IFilm, 'id' | 'isFavorite'>
 
