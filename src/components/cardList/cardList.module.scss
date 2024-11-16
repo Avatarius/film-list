@@ -9,7 +9,7 @@
 
 
 .card {
-  background-color: #000;
+  background-color: var(--modal-background-color);
   color: #fff;
   border-radius: var(--modal-border-radius, 10px);
 }

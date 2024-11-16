@@ -1,12 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getFilms, likeFilm } from "../../utils/api";
-import { IFilm, UpdateFilm } from "../../utils/types";
+import { addFilmApi, getFilms, likeFilmApi } from "../../utils/api";
+import {INewFilm, UpdateFilm } from "../../utils/types";
 
 const fetchFilms = createAsyncThunk("films/fetch", async () => getFilms());
 
 const updateFilm = createAsyncThunk(
   "films/like",
-  async ({id, isFavorite}: UpdateFilm) => likeFilm(id, isFavorite)
+  async ({ id, isFavorite }: UpdateFilm) => likeFilmApi(id, isFavorite)
 );
 
-export { fetchFilms, updateFilm };
+const addNewFilm = createAsyncThunk("films/add", async (film: INewFilm) =>
+  addFilmApi(film)
+);
+
+export { fetchFilms, updateFilm, addNewFilm };

@@ -9,13 +9,19 @@ interface IFilm {
   isFavorite: boolean;
 }
 
-type UpdateFilm = Pick<IFilm, 'id' | 'isFavorite'>;
+interface IFormData extends Omit<IFilm, 'year' | 'id' | 'isFavorite'> {
+  year: string;
+}
+
+type INewFilm = Omit<IFilm, 'id'> ;
+
+type UpdateFilm = Pick<IFilm, 'id' | 'isFavorite'>
 
 enum FilterType {
   ALL,
   FAVORITE
 }
 
-export type {IFilm, UpdateFilm };
+export type {IFilm, INewFilm, UpdateFilm, IFormData };
 
 export {FilterType};

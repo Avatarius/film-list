@@ -4,13 +4,19 @@ import {
   selectFavoriteFilms,
   selectFilter,
 } from "../../services/slices/films";
-import { useSelector } from "../../services/store";
+import { useDispatch, useSelector } from "../../services/store";
 import { FilterType } from "../../utils/types";
-import { Card } from "../card/card";
 import styles from "./cardList.module.scss";
 import { ProductInfo } from "../productInfo/productInfo";
+import { useEffect } from "react";
+import { fetchFilms } from "../../services/thunk/films";
 
 function CardList() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchFilms());
+  }, [])
+
   const location = useLocation();
   const filter = useSelector(selectFilter);
   const characterList =

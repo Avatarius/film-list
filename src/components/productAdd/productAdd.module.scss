@@ -43,7 +43,9 @@
     &_number {
       -moz-appearance: textfield;
     }
-
+  }
+  &__textarea {
+    resize: none
   }
 }
 
@@ -54,6 +56,12 @@
   border-radius: 14px;
   padding: 14px;
   transition: background-color 0.15s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid var(--button-disabled-color, #555555);
+    color: var(--button-disabled-color, #555555);
+  }
 
   &:hover {
     background-color: #323e61;

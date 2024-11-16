@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFilms, updateFilm } from "../thunk/films";
+import { addNewFilm, fetchFilms, updateFilm } from "../thunk/films";
 import { FilterType, IFilm } from "../../utils/types";
 
 interface IFilmsState {
@@ -41,7 +41,7 @@ const filmsSlice = createSlice({
         const item = state.films.find((item) => item.id === id);
         if (!item) return;
         item.isFavorite = isFavorite;
-      });
+      })
   },
   selectors: {
     selectAllFilms: (state) => state.films,
