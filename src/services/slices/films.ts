@@ -47,7 +47,7 @@ const filmsSlice = createSlice({
     selectAllFilms: (state) => state.films,
     selectFavoriteFilms: (state) =>
       state.films.filter((film) => film.isFavorite),
-    selectFilmById: (state, id) => state.films.find((film) => film.id === id),
+    selectFilmById: (state, id) => state.films.find((film) => film.id === id) ?? null,
     selectIsLoading: (state) => state.isLoading,
     selectFilter: (state) => state.filter,
   },

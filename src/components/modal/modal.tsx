@@ -23,7 +23,7 @@ function Modal(props: IModalProps) {
     }
 
     document.addEventListener("keydown", handleEscape);
-    document.addEventListener('click', handleClickOutside)
+    document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.removeEventListener('click', handleClickOutside);

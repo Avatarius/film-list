@@ -2,6 +2,19 @@
   display: grid;
   grid-template-columns: repeat(2, 500px);
   justify-content: center;
+  align-items: start;
   gap: 30px;
   margin-block-start: 30px;
+}
+
+
+.card {
+  background-color: #000;
+  color: #fff;
+  border-radius: var(--modal-border-radius, 10px);
+}
+
+.link {
+  text-decoration: none;
+  color: unset;
 }

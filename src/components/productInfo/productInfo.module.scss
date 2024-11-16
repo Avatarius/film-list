@@ -1,11 +1,18 @@
-@use '../../styles/mixins.scss';
+@use "../../styles/mixins.scss";
 
 .container {
   display: grid;
   grid-template-columns: 320px 1fr;
   font-size: 18px;
+  overflow: hidden;
+  position: relative;
+  &_card {
+    grid-template-columns: 250px 1fr;
+    box-shadow: 3px -3px 10px rgba(0 0 0 / 0.4);
+    border-radius: var(--modal-border-radius, 10px);
+    font-size: 16px;
+  }
 }
-
 
 .poster {
   background-repeat: no-repeat;
@@ -22,12 +29,12 @@
     border-start-start-radius: inherit;
     border-end-start-radius: inherit;
     transition: scale 0.2s ease-in-out;
+    min-block-size: 375px;
   }
   &:has(:hover) &__img {
     scale: 1.07;
   }
 }
-
 
 .info {
   padding: 10px;
@@ -38,6 +45,9 @@
   }
   &__title {
     font-size: 28px;
+    &_card {
+      font-size: 23px;
+    }
   }
   &__year {
     margin-block-end: 10px;
@@ -45,12 +55,29 @@
   &__country {
     margin-block-end: 15px;
   }
+  &__description {
+    position: relative;
+    &_card {
+      max-height: calc(10 * 1em);
+      overflow: hidden;
+      line-height: 1;
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent, #000);
+        pointer-events: none;
+        block-size: calc(1em);
+        inline-size: 100%;
+      }
+    }
+  }
 }
-
 
 .button {
   @include mixins.button();
   @include mixins.flex(row, center, center);
+
   &-like {
     transition: scale 0.2s ease-in-out;
     &:hover {
@@ -62,6 +89,19 @@
     }
     &_active &__svg {
       color: #fff;
+    }
+  }
+  &-remove {
+    position: absolute;
+    border-start-start-radius: inherit;
+    border-end-end-radius: inherit;
+    padding: 5px;
+    background-color: rgba(255 0 0 / 0.5);
+    transition: translate 0.2s ease-in-out;
+    translate: -100%;
+    z-index: 3;
+    .container:has(:hover) & {
+      translate: 0;
     }
   }
 }
