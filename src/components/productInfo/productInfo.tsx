@@ -20,7 +20,6 @@ function ProductInfo({ film, isCard }: IProductInfo) {
   function likeCard(e: React.MouseEvent) {
     e.preventDefault();
     dispatch(updateFilm({ id: id, isFavorite: !isFavorite }));
-    console.log(name);
 
   }
 
@@ -28,8 +27,6 @@ function ProductInfo({ film, isCard }: IProductInfo) {
     e.preventDefault();
     console.log('remove');
   }
-
-  console.log(isFavorite);
 
 
   return (

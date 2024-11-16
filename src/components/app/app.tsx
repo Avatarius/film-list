@@ -6,7 +6,6 @@ import { Welcome } from "../welcome/welcome";
 import styles from "./app.module.scss";
 import { Products } from "../../pages/products/products";
 import { fetchFilms } from "../../services/thunk/films";
-import { likeFilm } from "../../utils/api";
 import { Modal } from "../modal/modal";
 import { ProductInfo } from "../productInfo/productInfo";
 import { useSelector } from "../../services/store";
