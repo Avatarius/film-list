@@ -17,6 +17,7 @@
 .poster {
   border-start-start-radius: var(--modal-border-radius, 10px);
   border-end-start-radius: var(--modal-border-radius, 10px);
+  position: relative;
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: center;
@@ -60,9 +61,10 @@
     position: relative;
     flex-grow: 1;
     overflow-wrap: break-word;
-    max-inline-size: 230px;
+    max-inline-size: 700px;
     &_card {
       max-height: calc(10 * 1em);
+      max-inline-size: 230px;
       overflow: hidden;
       line-height: 1;
       &::before {
@@ -80,4 +82,18 @@
 
 .container:has(:hover) [data-button-remove] {
   translate: 0;
+}
+
+.panel {
+  @include mixins.flex(row, space-around, center);
+  position: absolute;
+  inline-size: 100%;
+  block-size: 40px;
+  background-color: rgba(0 0 0 / 0.5);
+  translate: 0 -100%;
+  z-index: 3;
+  transition: translate 0.15s ease-in-out;
+  .container:has(:hover) & {
+    translate: 0;
+  }
 }

@@ -7,6 +7,7 @@ import { SyntheticEvent } from "react";
 import defaultImage from "../../images/default.jpg";
 import { ButtonLike } from "../buttonLike/buttonLike";
 import { ButtonRemove } from "../buttonRemove/buttonRemove";
+import { ButtonEdit } from "../buttonEdit/buttonEdit";
 
 interface IProductInfo {
   film: IFilm | null;
@@ -33,12 +34,21 @@ function ProductInfo({ film, isCard }: IProductInfo) {
     });
   }
 
+  function editCard(e: React.MouseEvent) {
+    e.preventDefault();
+  }
+
   return (
     <article
       className={clsx(styles.container, isCard && styles.container_card)}
     >
-      {isCard && <ButtonRemove onClick={removeCard} />}
       <div className={styles.poster}>
+        {isCard && (
+          <div className={styles.panel}>
+            <ButtonRemove onClick={removeCard} />
+            <ButtonEdit onClick={editCard} />
+          </div>
+        )}
         <img
           src={poster}
           alt={name}
