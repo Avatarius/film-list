@@ -20,6 +20,14 @@ function ProductAdd({formData, setFormData} : IProductAddProps) {
     dispatch(addNewFilm(newFilm)).then(() => {
       navigate('/products');
       dispatch(fetchFilms());
+      setFormData({
+        name: '',
+        nameOrig: '',
+        year: '',
+        country: '',
+        description: '',
+        poster: ''
+      })
     });
   }
 

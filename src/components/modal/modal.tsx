@@ -23,10 +23,10 @@ function Modal(props: IModalProps) {
     }
 
     document.addEventListener("keydown", handleEscape);
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener("keydown", handleEscape);
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose]);
 
