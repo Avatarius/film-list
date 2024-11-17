@@ -1,0 +1,9 @@
+@use "../../styles/mixins.scss";
+
+.button {
+  @include mixins.button();
+  position: absolute;
+  color: #fff;
+  inset-inline-end: -50px;
+  inset-block-start: -50px;
+}

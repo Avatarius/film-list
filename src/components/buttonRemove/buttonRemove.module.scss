@@ -1,0 +1,13 @@
+@use "../../styles/mixins.scss";
+
+.button {
+  @include mixins.button();
+  position: absolute;
+  z-index: 3;
+  border-start-start-radius: var(--modal-border-radius, 10px);
+  border-end-end-radius: var(--modal-border-radius, 10px);
+  padding: 5px;
+  background-color: rgba(255 0 0 / 0.5);
+  transition: translate 0.2s ease-in-out;
+  translate: -100%;
+}
