@@ -3,6 +3,8 @@ import { useDispatch } from "../../services/store";
 import clsx from "clsx";
 import { fetchFilms, removeFilm, updateFilm } from "../../services/thunk/films";
 import { IFilm } from "../../utils/types";
+import { SyntheticEvent } from "react";
+import defaultImage from '../../images/default.jpg'
 
 interface IProductInfo {
   film: IFilm | null;
@@ -48,7 +50,12 @@ function ProductInfo({ film, isCard }: IProductInfo) {
         </button>
       )}
       <div className={styles.poster}>
-        <img src={poster} alt={name} className={styles.poster__img} />
+        <img src={poster} alt={name} className={styles.poster__img} onError={(e: SyntheticEvent) => {
+          const img = e.target as HTMLImageElement;
+          img.src = defaultImage;
+          img.alt = 'poster';
+        }
+        }/>
       </div>
       <div className={styles.info}>
         <div className={styles["info__title-container"]}>
