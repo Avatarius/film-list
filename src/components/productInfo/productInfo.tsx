@@ -29,9 +29,7 @@ function ProductInfo({ film, isCard }: IProductInfo) {
 
   function removeCard(e: React.MouseEvent) {
     e.preventDefault();
-    dispatch(removeFilmThunk(id)).then(() => {
-      dispatch(fetchFilmsThunk());
-    });
+    dispatch(removeFilmThunk(id));
   }
 
   function editCard(e: React.MouseEvent) {

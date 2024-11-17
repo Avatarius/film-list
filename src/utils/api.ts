@@ -28,8 +28,7 @@ async function likeFilmApi(id: string, isFavorite: boolean) {
     isFavorite,
     timestamp: serverTimestamp(),
   });
-  const docSnap = await getDoc(docRef);
-  return { ...docSnap.data(), id: docSnap.id } as IFilm;
+  return id;
 }
 
 async function addFilmApi(film: INewFilm) {
@@ -37,21 +36,24 @@ async function addFilmApi(film: INewFilm) {
     ...film,
     timestamp: serverTimestamp(),
   });
-  return docRef;
+  const docSnap = await getDoc(docRef);
+  return {...docSnap.data(), id: docSnap.id} as IFilm;
 }
 
 async function removeFilmApi(id: string) {
-  const result = await deleteDoc(doc(db, "films", id));
-  return result;
+  await deleteDoc(doc(db, "films", id));
+  return id;
 }
 
 async function editFilmApi(id: string, updatedFilm: INewFilm) {
+  const timestamp = serverTimestamp();
   const docRef = doc(db, "films", id);
   const result = await updateDoc(docRef, {
     ...updatedFilm,
-    timestamp: serverTimestamp(),
+    timestamp: timestamp,
   });
-  return result;
+  const docSnap = await getDoc(docRef);
+  return {...docSnap.data()} as IFilm;
 }
 
 export { getFilmsApi, likeFilmApi, addFilmApi, removeFilmApi, editFilmApi };

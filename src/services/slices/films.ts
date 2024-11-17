@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFilmsThunk, likeFilmThunk } from "../thunk/films";
+import {
+  addNewFilmThunk,
+  editFilmThunk,
+  fetchFilmsThunk,
+  likeFilmThunk,
+  removeFilmThunk,
+} from "../thunk/films";
 import { FilterType, IFilm } from "../../utils/types";
 
 interface IFilmsState {
@@ -38,11 +44,29 @@ const filmsSlice = createSlice({
       .addCase(fetchFilmsThunk.rejected, (state) => {
         state.isLoading = false;
       })
+      .addCase(addNewFilmThunk.fulfilled, (state, action) => {
+        const newFilm = action.payload;
+        state.films = [newFilm, ...state.films];
+      })
+      .addCase(removeFilmThunk.fulfilled, (state, action) => {
+        const id = action.payload;
+        state.films = state.films.filter((item) => item.id !== id);
+      })
+      .addCase(editFilmThunk.fulfilled, (state, action) => {
+        const updatedFilm = action.payload;
+        state.films = state.films.map((item) => {
+          if (item.id === updatedFilm.id) {
+            return updatedFilm;
+          } else {
+            return item;
+          }
+        });
+      })
       .addCase(likeFilmThunk.fulfilled, (state, action) => {
-        const { id, isFavorite } = action.payload;
+        const id = action.payload;
         const item = state.films.find((item) => item.id === id);
         if (!item) return;
-        item.isFavorite = isFavorite;
+        item.isFavorite = !item.isFavorite;
       });
   },
   selectors: {

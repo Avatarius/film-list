@@ -23,7 +23,6 @@ function ProductAdd({ formData, setFormData }: IProductFormProps) {
     };
     dispatch(addNewFilmThunk(newFilm)).then(() => {
       navigate("/products");
-      dispatch(fetchFilmsThunk());
       setFormData({
         name: "",
         nameOrig: "",

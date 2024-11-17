@@ -29,7 +29,6 @@ function ProductEdit({}: IProductEditProps) {
     };
     dispatch(editFilmThunk({ id: id ?? "", updatedFilm })).then(() => {
       navigate('/products');
-      dispatch(fetchFilmsThunk());
     });
   }
 
