@@ -1,4 +1,4 @@
-@use '../../styles/mixins.scss';
+@use "../../styles/mixins.scss";
 
 .container {
   background-color: var(--header-background-color, #000);
@@ -8,7 +8,6 @@
   @include mixins.flex(row, space-between, center);
 }
 
-
 .nav {
   font-size: 25px;
   &__list {
@@ -17,8 +16,6 @@
   }
 
   &__link {
-    color: inherit;
-    text-decoration: none;
     position: relative;
     transition: translate 0.2s ease-in-out;
     padding: 10px;
@@ -45,5 +42,3 @@
     } */
   }
 }
-
-

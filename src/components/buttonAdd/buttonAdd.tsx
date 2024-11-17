@@ -7,7 +7,6 @@ function ButtonAdd() {
     <Link
       to="/create-product"
       state={{ backgroundLocation: location }}
-      className={styles.link}
     >
       <button className={styles.container}>+ Добавить фильм</button>
     </Link>

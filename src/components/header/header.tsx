@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import styles from "./header.module.scss";
 import clsx from "clsx";
 
@@ -6,7 +6,10 @@ function Header() {
   return (
     <>
       <header className={styles.container}>
-        <h1>Film list</h1>
+        <Link to="/">
+          {" "}
+          <h1>Film list</h1>
+        </Link>
         <nav className={styles.nav}>
           <ul className={styles.nav__list}>
             <NavLink
