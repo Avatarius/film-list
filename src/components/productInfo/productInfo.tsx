@@ -1,13 +1,14 @@
 import styles from "./productInfo.module.scss";
 import { useDispatch } from "../../services/store";
 import clsx from "clsx";
-import { fetchFilmsThunk, removeFilmThunk, likeFilmThunk } from "../../services/thunk/films";
+import { removeFilmThunk, likeFilmThunk } from "../../services/thunk/films";
 import { IFilm } from "../../utils/types";
 import { SyntheticEvent } from "react";
 import defaultImage from "../../images/default.jpg";
 import { ButtonLike } from "../buttonLike/buttonLike";
 import { ButtonRemove } from "../buttonRemove/buttonRemove";
 import { ButtonEdit } from "../buttonEdit/buttonEdit";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface IProductInfo {
   film: IFilm | null;
@@ -16,6 +17,8 @@ interface IProductInfo {
 
 function ProductInfo({ film, isCard }: IProductInfo) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   if (!film) {
     return null;
   }
@@ -34,6 +37,7 @@ function ProductInfo({ film, isCard }: IProductInfo) {
 
   function editCard(e: React.MouseEvent) {
     e.preventDefault();
+    navigate(`/products/edit/${id}`, {state: {backgroundLocation: location}});
   }
 
   return (
@@ -44,7 +48,7 @@ function ProductInfo({ film, isCard }: IProductInfo) {
         {isCard && (
           <div className={styles.panel}>
             <ButtonRemove onClick={removeCard} />
-            <ButtonEdit id={id}/>
+            <ButtonEdit onClick={editCard}/>
           </div>
         )}
         <img
