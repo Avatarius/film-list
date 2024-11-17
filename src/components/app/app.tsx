@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { Header } from "../header/header";
-import {
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Welcome } from "../../pages/welcome/welcome";
 import styles from "./app.module.scss";
 import { Products } from "../../pages/products/products";
@@ -16,6 +11,7 @@ import { selectFilmById } from "../../services/slices/films";
 import { ProductAdd } from "../productAdd/productAdd";
 import { IFormData } from "../../utils/types";
 import { NotFound } from "../../pages/notFound/notFound";
+import { ProductEdit } from "../productEdit/productEdit";
 
 function App() {
   const location = useLocation();
@@ -38,7 +34,7 @@ function App() {
     <div className={styles.container}>
       <Routes location={backgroundLocation || location}>
         <Route path="/" element={<Header />}>
-          <Route path="*" element={<NotFound/>}/>
+          <Route path="*" element={<NotFound />} />
           <Route index element={<Welcome />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<div></div>} />
@@ -56,12 +52,19 @@ function App() {
               </Modal>
             }
           />
-          <Route path="/products/edit/:id" element={<Modal onClose={() =>navigate('/products')}>Edit product</Modal>}/>
+          <Route
+            path="/products/edit/:id"
+            element={
+              <Modal onClose={() => navigate("/products")}>
+                <ProductEdit/>
+              </Modal>
+            }
+          />
           <Route
             path="/create-product"
             element={
               <Modal onClose={() => navigate("/products")}>
-                <ProductAdd formData={formData} setFormData={setFormData}/>
+                <ProductAdd formData={formData} setFormData={setFormData} />
               </Modal>
             }
           />

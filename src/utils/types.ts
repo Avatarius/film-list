@@ -9,22 +9,28 @@ interface IFilm {
   isFavorite: boolean;
   timestamp: {
     seconds: number;
-  }
+  };
 }
 
-interface IFormData extends Omit<IFilm, 'year' | 'id' | 'isFavorite' | 'timestamp'> {
+interface IFormData
+  extends Omit<IFilm, "year" | "id" | "isFavorite" | "timestamp"> {
   year: string;
 }
 
-type INewFilm = Omit<IFilm, 'id' | 'timestamp'> ;
+type INewFilm = Omit<IFilm, "id" | "timestamp">;
 
-type UpdateFilm = Pick<IFilm, 'id' | 'isFavorite'>
+type LikeFilm = Pick<IFilm, "id" | "isFavorite">;
+
+type EditFilm = {
+  id: string;
+  updatedFilm: INewFilm;
+};
 
 enum FilterType {
   ALL,
-  FAVORITE
+  FAVORITE,
 }
 
-export type {IFilm, INewFilm, UpdateFilm, IFormData };
+export type { IFilm, INewFilm, LikeFilm, IFormData, EditFilm };
 
-export {FilterType};
+export { FilterType };

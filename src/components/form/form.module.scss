@@ -1,0 +1,55 @@
+@use "../../styles/mixins.scss";
+
+.form {
+  @include mixins.flex(column, center, stretch);
+  gap: 20px;
+  font-size: 18px;
+}
+
+.label {
+  @include mixins.flex(column, flex-start, flex-start);
+}
+
+.input {
+  margin-block-start: 7px;
+  inline-size: 100%;
+  padding: 10px;
+  appearance: none;
+  border: none;
+  border-radius: 2px;
+  color: var(--input-text-color, #c8c8c8);
+  background-color: var(--input-background-color, #303245);
+  font-size: 22px;
+  &_number::-webkit-outer-spin-button,
+  &_number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &_number {
+    -moz-appearance: textfield;
+  }
+  &_textarea {
+    resize: none;
+  }
+  &:focus {
+    outline: none;
+    border-block-end: 1px solid #1bc7fc;
+  }
+}
+
+.button {
+  @include mixins.button();
+  margin-block-start: 10px;
+  background-color: var(--input-background-color, #303245);
+  border-radius: 8px;
+  padding: 14px;
+  transition: background-color 0.15s ease-in-out;
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--button-disabled-color, #555555);
+  }
+
+  &:hover {
+    background-color: #616379;
+  }
+}

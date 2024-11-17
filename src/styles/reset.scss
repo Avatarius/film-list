@@ -52,3 +52,10 @@ a {
   color: unset;
   text-decoration: none;
 }
+
+input {
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
+  padding: 0;
+}

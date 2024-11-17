@@ -1,7 +1,7 @@
 import styles from "./productInfo.module.scss";
 import { useDispatch } from "../../services/store";
 import clsx from "clsx";
-import { fetchFilms, removeFilm, updateFilm } from "../../services/thunk/films";
+import { fetchFilmsThunk, removeFilmThunk, likeFilmThunk } from "../../services/thunk/films";
 import { IFilm } from "../../utils/types";
 import { SyntheticEvent } from "react";
 import defaultImage from "../../images/default.jpg";
@@ -24,13 +24,13 @@ function ProductInfo({ film, isCard }: IProductInfo) {
 
   function likeCard(e: React.MouseEvent) {
     e.preventDefault();
-    dispatch(updateFilm({ id: id, isFavorite: !isFavorite }));
+    dispatch(likeFilmThunk({ id: id, isFavorite: !isFavorite }));
   }
 
   function removeCard(e: React.MouseEvent) {
     e.preventDefault();
-    dispatch(removeFilm(id)).then(() => {
-      dispatch(fetchFilms());
+    dispatch(removeFilmThunk(id)).then(() => {
+      dispatch(fetchFilmsThunk());
     });
   }
 

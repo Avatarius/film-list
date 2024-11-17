@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from "../../services/store";
 import { selectIsLoading } from "../../services/slices/films";
 import { Loader } from "../../components/loader/loader";
 import { useEffect } from "react";
-import { fetchFilms } from "../../services/thunk/films";
+import { fetchFilmsThunk } from "../../services/thunk/films";
 
 function Products() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchFilms());
+    dispatch(fetchFilmsThunk());
   }, [])
   const isLoading = useSelector(selectIsLoading);
   if (isLoading) {
