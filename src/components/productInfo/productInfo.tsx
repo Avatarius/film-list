@@ -46,7 +46,7 @@ function ProductInfo({ film, isCard }: IProductInfo) {
         {isCard && (
           <div className={styles.panel}>
             <ButtonRemove onClick={removeCard} />
-            <ButtonEdit onClick={editCard} />
+            <ButtonEdit id={id}/>
           </div>
         )}
         <img

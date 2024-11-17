@@ -42,6 +42,7 @@ function App() {
           <Route index element={<Welcome />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<div></div>} />
+          <Route path="/products/edit/:id" element={<div>edit</div>} />
           <Route path="/create-product" element={<div>gdfgfd</div>} />
         </Route>
       </Routes>
@@ -55,6 +56,7 @@ function App() {
               </Modal>
             }
           />
+          <Route path="/products/edit/:id" element={<Modal onClose={() =>navigate('/products')}>Edit product</Modal>}/>
           <Route
             path="/create-product"
             element={
