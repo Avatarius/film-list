@@ -1,0 +1,11 @@
+@use '../../styles/mixins.scss';
+
+.container {
+  flex-grow: 1;
+  @include mixins.flex(row, center, center);
+}
+
+
+.text {
+  font-size: 72px;
+}

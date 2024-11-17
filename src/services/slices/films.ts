@@ -18,8 +18,6 @@ const filmsSlice = createSlice({
   name: "films",
   initialState,
   reducers: {
-    removeFilm: (state) => {},
-    likeFilm: (state) => {},
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
@@ -31,8 +29,11 @@ const filmsSlice = createSlice({
       })
       .addCase(fetchFilms.fulfilled, (state, action) => {
         state.isLoading = false;
-
-        state.films = [...action.payload.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds)];
+        state.films = [
+          ...action.payload.sort(
+            (a, b) => b.timestamp.seconds - a.timestamp.seconds
+          ),
+        ];
       })
       .addCase(fetchFilms.rejected, (state) => {
         state.isLoading = false;
@@ -42,13 +43,14 @@ const filmsSlice = createSlice({
         const item = state.films.find((item) => item.id === id);
         if (!item) return;
         item.isFavorite = isFavorite;
-      })
+      });
   },
   selectors: {
     selectAllFilms: (state) => state.films,
     selectFavoriteFilms: (state) =>
       state.films.filter((film) => film.isFavorite),
-    selectFilmById: (state, id) => state.films.find((film) => film.id === id) ?? null,
+    selectFilmById: (state, id) =>
+      state.films.find((film) => film.id === id) ?? null,
     selectIsLoading: (state) => state.isLoading,
     selectFilter: (state) => state.filter,
   },
@@ -61,7 +63,7 @@ const {
   selectIsLoading,
   selectFilter,
 } = filmsSlice.selectors;
-const { removeFilm, likeFilm, setFilter } = filmsSlice.actions;
+const { setFilter } = filmsSlice.actions;
 
 export {
   filmsSlice,

@@ -13,9 +13,7 @@ import { fetchFilms } from "../../services/thunk/films";
 
 function CardList() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchFilms());
-  }, [])
+
 
   const location = useLocation();
   const filter = useSelector(selectFilter);

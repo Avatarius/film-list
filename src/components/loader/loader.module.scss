@@ -1,0 +1,24 @@
+@use "../../styles/mixins.scss";
+
+.container {
+  flex-grow: 1;
+  @include mixins.flex(row, center, center);
+}
+
+.loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 100%;
+  border-block-start: 12px solid rgba(0 0 0 / 0.5);
+  animation: spin 1.5s linear infinite;
+  inline-size: 150px;
+  block-size: 150px;
+}
+
+@keyframes spin {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}

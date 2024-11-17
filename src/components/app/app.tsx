@@ -6,7 +6,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { Welcome } from "../welcome/welcome";
+import { Welcome } from "../../pages/welcome/welcome";
 import styles from "./app.module.scss";
 import { Products } from "../../pages/products/products";
 import { Modal } from "../modal/modal";
@@ -15,6 +15,7 @@ import { useSelector } from "../../services/store";
 import { selectFilmById } from "../../services/slices/films";
 import { ProductAdd } from "../productAdd/productAdd";
 import { IFormData } from "../../utils/types";
+import { NotFound } from "../../pages/notFound/notFound";
 
 function App() {
   const location = useLocation();
@@ -37,6 +38,7 @@ function App() {
     <div className={styles.container}>
       <Routes location={backgroundLocation || location}>
         <Route path="/" element={<Header />}>
+          <Route path="*" element={<NotFound/>}/>
           <Route index element={<Welcome />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<div></div>} />
