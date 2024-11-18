@@ -4,17 +4,17 @@ import React from "react";
 import * as ReactDOMClient from "react-dom/client";
 import { Provider } from "react-redux";
 import store from "./services/store";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 const container = document.getElementById("root") as HTMLElement;
 const root = ReactDOMClient.createRoot(container!);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <App />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
