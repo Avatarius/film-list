@@ -1,24 +1,48 @@
 import styles from "./productEdit.module.scss";
 import { Form } from "../form/form";
 import { useDispatch, useSelector } from "../../services/store";
-import { selectFilmById } from "../../services/slices/films";
+import { selectAllFilms, selectFilmById } from "../../services/slices/films";
 import { useNavigate, useParams } from "react-router-dom";
 import { IFormData, INewFilm } from "../../utils/types";
-import { FormEvent, useState } from "react";
+import {
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { editFilmThunk, fetchFilmsThunk } from "../../services/thunk/films";
 
-interface IProductEditProps {}
-
-function ProductEdit({}: IProductEditProps) {
+function ProductEdit() {
   const id = useParams().id;
-  const film = useSelector((state) => selectFilmById(state, id));
+  const film = useSelector((state) => selectFilmById(state, id ?? ""));
+
+  const [formData, setFormData] = useState<IFormData>({
+    name: film?.name ?? "",
+    nameOrig: film?.nameOrig ?? "",
+    poster: film?.poster ?? "",
+    year: film?.year.toString() ?? "",
+    country: film?.country ?? "",
+    description: film?.description ?? "",
+  });
+
+  useEffect(() => {
+    setFormData({
+      name: film?.name ?? "",
+      nameOrig: film?.nameOrig ?? "",
+      poster: film?.poster ?? "",
+      year: film?.year.toString() ?? "",
+      country: film?.country ?? "",
+      description: film?.description ?? "",
+    });
+  }, [film]);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   if (!film) {
     return null;
   }
-  const initialFormData: IFormData = { ...film, year: film.year.toString() };
-  const [formData, setFormData] = useState<IFormData>(initialFormData);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -28,7 +52,7 @@ function ProductEdit({}: IProductEditProps) {
       year: Number(formData.year),
     };
     dispatch(editFilmThunk({ id: id ?? "", updatedFilm })).then(() => {
-      navigate('/products');
+      navigate("/products");
     });
   }
 

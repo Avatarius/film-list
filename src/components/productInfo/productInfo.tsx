@@ -1,5 +1,5 @@
 import styles from "./productInfo.module.scss";
-import { useDispatch } from "../../services/store";
+import { useDispatch, useSelector } from "../../services/store";
 import clsx from "clsx";
 import { removeFilmThunk, likeFilmThunk } from "../../services/thunk/films";
 import { IFilm } from "../../utils/types";
@@ -8,7 +8,8 @@ import defaultImage from "../../images/default.jpg";
 import { ButtonLike } from "../buttonLike/buttonLike";
 import { ButtonRemove } from "../buttonRemove/buttonRemove";
 import { ButtonEdit } from "../buttonEdit/buttonEdit";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { selectFilmById } from "../../services/slices/films";
 
 interface IProductInfo {
   film: IFilm | null;
@@ -19,11 +20,14 @@ function ProductInfo({ film, isCard }: IProductInfo) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  if (!film) {
+  const params = useParams();
+  const currentFilm = film ? film : useSelector((state => selectFilmById(state, params.id)));
+
+  if (!currentFilm) {
     return null;
   }
   const { id, name, nameOrig, year, country, description, poster, isFavorite } =
-    film;
+  currentFilm;
 
   function likeCard(e: React.MouseEvent) {
     e.preventDefault();

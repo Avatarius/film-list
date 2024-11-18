@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../header/header";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Welcome } from "../../pages/welcome/welcome";
@@ -6,22 +6,37 @@ import styles from "./app.module.scss";
 import { Products } from "../../pages/products/products";
 import { Modal } from "../modal/modal";
 import { ProductInfo } from "../productInfo/productInfo";
-import { useSelector } from "../../services/store";
+import { useDispatch, useSelector } from "../../services/store";
 import { selectFilmById } from "../../services/slices/films";
 import { ProductAdd } from "../productAdd/productAdd";
 import { IFormData } from "../../utils/types";
 import { NotFound } from "../../pages/notFound/notFound";
 import { ProductEdit } from "../productEdit/productEdit";
+import { Details } from "../../pages/details/details";
+import { fetchFilmsThunk } from "../../services/thunk/films";
 
 function App() {
   const location = useLocation();
   const backgroundLocation = location.state?.backgroundLocation;
+  const dispatch = useDispatch();
   const currentFilm = useSelector((state) =>
     selectFilmById(state, location.state?.id)
   );
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<IFormData>({
+  useEffect(() => {
+    dispatch(fetchFilmsThunk());
+  }, [])
+
+  const [newFormData, setNewFormData] = useState<IFormData>({
+    name: "",
+    nameOrig: "",
+    poster: "",
+    year: "",
+    country: "",
+    description: "",
+  });
+  const [editFormData, setEditFormData] = useState<IFormData>({
     name: "",
     nameOrig: "",
     poster: "",
@@ -37,9 +52,9 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route index element={<Welcome />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<div></div>} />
-          <Route path="/products/edit/:id" element={<div>edit</div>} />
-          <Route path="/create-product" element={<div>gdfgfd</div>} />
+          <Route path="/products/:id" element={<Details><ProductInfo film={currentFilm} isCard={false} /></Details>} />
+          <Route path="/products/edit/:id" element={<Details><ProductEdit/></Details>} />
+          <Route path="/create-product" element={<Details><ProductAdd formData={newFormData} setFormData={setNewFormData} /></Details>} />
         </Route>
       </Routes>
       {backgroundLocation && (
@@ -64,7 +79,7 @@ function App() {
             path="/create-product"
             element={
               <Modal onClose={() => navigate("/products")}>
-                <ProductAdd formData={formData} setFormData={setFormData} />
+                <ProductAdd formData={newFormData} setFormData={setNewFormData} />
               </Modal>
             }
           />
