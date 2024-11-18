@@ -5,7 +5,7 @@ interface IButtonRemoveProps {
   onClick: (e: React.MouseEvent) => void;
 }
 
-function ButtonRemove({onClick}: IButtonRemoveProps) {
+function ButtonRemove({ onClick }: IButtonRemoveProps) {
   return (
     <button
       className={clsx(styles.button, styles["button-remove"])}

@@ -1,9 +1,8 @@
-@use '../../styles/mixins.scss';
+@use "../../styles/mixins.scss";
 
 .button {
   @include mixins.button();
 }
-
 
 .svg {
   color: #fff;

@@ -51,6 +51,8 @@ function ProductEdit() {
       isFavorite: film?.isFavorite ?? false,
       year: Number(formData.year),
     };
+    console.log(id);
+
     dispatch(editFilmThunk({ id: id ?? "", updatedFilm })).then(() => {
       navigate("/products");
     });

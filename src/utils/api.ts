@@ -53,7 +53,7 @@ async function editFilmApi(id: string, updatedFilm: INewFilm) {
     timestamp: timestamp,
   });
   const docSnap = await getDoc(docRef);
-  return {...docSnap.data()} as IFilm;
+  return {...docSnap.data(), id: docSnap.id} as IFilm;
 }
 
 export { getFilmsApi, likeFilmApi, addFilmApi, removeFilmApi, editFilmApi };

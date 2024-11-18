@@ -18,7 +18,7 @@ function Form(props: IFormProps) {
     setFormData({ ...formData, [name]: value });
   }
 
-  const isButtonDisabled = Object.values(formData).some(item => item === '');
+  const isButtonDisabled = Object.values(formData).some((item) => item === "");
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>

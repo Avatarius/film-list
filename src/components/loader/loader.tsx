@@ -1,10 +1,11 @@
-import styles from './loader.module.scss';
+import styles from "./loader.module.scss";
 
 function Loader() {
   return (
-    <div className={styles.container}><div className={styles.loader}></div></div>
-  )
+    <div className={styles.container}>
+      <div className={styles.loader}></div>
+    </div>
+  );
 }
 
-
-export {Loader};
+export { Loader };

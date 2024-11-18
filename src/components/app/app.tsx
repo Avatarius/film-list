@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchFilmsThunk());
-  }, [])
+  }, []);
 
   const [newFormData, setNewFormData] = useState<IFormData>({
     name: "",
@@ -52,9 +52,33 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route index element={<Welcome />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<Details><ProductInfo film={currentFilm} isCard={false} /></Details>} />
-          <Route path="/products/edit/:id" element={<Details><ProductEdit/></Details>} />
-          <Route path="/create-product" element={<Details><ProductAdd formData={newFormData} setFormData={setNewFormData} /></Details>} />
+          <Route
+            path="/products/:id"
+            element={
+              <Details>
+                <ProductInfo film={currentFilm} isCard={false} />
+              </Details>
+            }
+          />
+          <Route
+            path="/products/edit/:id"
+            element={
+              <Details>
+                <ProductEdit />
+              </Details>
+            }
+          />
+          <Route
+            path="/create-product"
+            element={
+              <Details>
+                <ProductAdd
+                  formData={newFormData}
+                  setFormData={setNewFormData}
+                />
+              </Details>
+            }
+          />
         </Route>
       </Routes>
       {backgroundLocation && (
@@ -71,7 +95,7 @@ function App() {
             path="/products/edit/:id"
             element={
               <Modal onClose={() => navigate("/products")}>
-                <ProductEdit/>
+                <ProductEdit />
               </Modal>
             }
           />
@@ -79,7 +103,10 @@ function App() {
             path="/create-product"
             element={
               <Modal onClose={() => navigate("/products")}>
-                <ProductAdd formData={newFormData} setFormData={setNewFormData} />
+                <ProductAdd
+                  formData={newFormData}
+                  setFormData={setNewFormData}
+                />
               </Modal>
             }
           />

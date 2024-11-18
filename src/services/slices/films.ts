@@ -6,7 +6,7 @@ import {
   likeFilmThunk,
   removeFilmThunk,
 } from "../thunk/films";
-import { FilterType, IFilm } from "../../utils/types";
+import { EditFilm, FilterType, IFilm } from "../../utils/types";
 
 interface IFilmsState {
   films: IFilm[];
@@ -54,6 +54,7 @@ const filmsSlice = createSlice({
       })
       .addCase(editFilmThunk.fulfilled, (state, action) => {
         const updatedFilm = action.payload;
+
         state.films = state.films.map((item) => {
           if (item.id === updatedFilm.id) {
             return updatedFilm;

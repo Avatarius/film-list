@@ -21,13 +21,15 @@ function ProductInfo({ film, isCard }: IProductInfo) {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
-  const currentFilm = film ? film : useSelector((state => selectFilmById(state, params.id)));
+  const currentFilm = film
+    ? film
+    : useSelector((state) => selectFilmById(state, params.id));
 
   if (!currentFilm) {
     return null;
   }
   const { id, name, nameOrig, year, country, description, poster, isFavorite } =
-  currentFilm;
+    currentFilm;
 
   function likeCard(e: React.MouseEvent) {
     e.preventDefault();
@@ -41,7 +43,9 @@ function ProductInfo({ film, isCard }: IProductInfo) {
 
   function editCard(e: React.MouseEvent) {
     e.preventDefault();
-    navigate(`/products/edit/${id}`, {state: {backgroundLocation: location}});
+    navigate(`/products/edit/${id}`, {
+      state: { backgroundLocation: location },
+    });
   }
 
   return (
@@ -52,7 +56,7 @@ function ProductInfo({ film, isCard }: IProductInfo) {
         {isCard && (
           <div className={styles.panel}>
             <ButtonRemove onClick={removeCard} />
-            <ButtonEdit onClick={editCard}/>
+            <ButtonEdit onClick={editCard} />
           </div>
         )}
         <img
